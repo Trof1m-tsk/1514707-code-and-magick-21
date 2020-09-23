@@ -1,4 +1,4 @@
-"use strict";
+`use strict`;
 
 const CLOUD_WIDTH = 420;
 const CLOUD_HEIGHT = 270;
@@ -13,7 +13,7 @@ const LINE_HEIGHT = TEXT_HEIGHT + GAP;
 const FIRST_BAR_X = CLOUD_X + SPACE_X;
 const FIRST_BAR_Y = CLOUD_Y + LINE_HEIGHT * 3 + GAP + BAR_MAX_HEIGHT;
 
-const renderCloud = function(ctx, x, y, color) {
+const renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
@@ -31,36 +31,36 @@ const getMaxResult = function (times) {
 };
 
 const getResult = function (ctx, x, height, name, time) {
-  const myColor = "rgba(250, 0, 0, 1)";
-  const otherColor = "hsl(240, " + (Math.random(0) * 100) + "% , 50%)";
+  const myColor = `rgba(250, 0, 0, 1)`;
+  const otherColor = `hsl(240, ` + (Math.random(0) * 100) + `% , 50%)`;
 
-  ctx.fillStyle = (name === "Вы") ? myColor : otherColor;
+  ctx.fillStyle = (name === `Вы`) ? myColor : otherColor;
   ctx.fillText(
-    Math.round(time),
-    FIRST_BAR_X + x,
-    CLOUD_Y + LINE_HEIGHT * 3
+      Math.round(time),
+      FIRST_BAR_X + x,
+      CLOUD_Y + LINE_HEIGHT * 3
   );
   ctx.fillRect(
-    FIRST_BAR_X + x,
-    FIRST_BAR_Y,
-    BAR_WIDTH,
-    -height
+      FIRST_BAR_X + x,
+      FIRST_BAR_Y,
+      BAR_WIDTH,
+      -height
   );
   ctx.fillText(
-    name,
-    FIRST_BAR_X + x,
-    FIRST_BAR_Y + LINE_HEIGHT
+      name,
+      FIRST_BAR_X + x,
+      FIRST_BAR_Y + LINE_HEIGHT
   );
-}
+};
 
 window.renderStatistics = function(ctx, names, times) {
-  renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, "rgba(0, 0, 0, 0.7)");
-  renderCloud(ctx, CLOUD_X, CLOUD_Y, "#ffffff");
+  renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, `rgba(0, 0, 0, 0.7)`);
+  renderCloud(ctx, CLOUD_X, CLOUD_Y, `#ffffff`);
 
-  ctx.fillStyle = "#000";
-  ctx.font = "16px PT Mono";
-  ctx.fillText("Ура вы победили", CLOUD_X + 100, CLOUD_Y + LINE_HEIGHT);
-  ctx.fillText("Список результатов:", CLOUD_X + 100, CLOUD_Y + LINE_HEIGHT * 2);
+  ctx.fillStyle = `#000`;
+  ctx.font = `16px PT Mono`;
+  ctx.fillText(`Ура вы победили`, CLOUD_X + 100, CLOUD_Y + LINE_HEIGHT);
+  ctx.fillText(`Список результатов:`, CLOUD_X + 100, CLOUD_Y + LINE_HEIGHT * 2);
 
   for (let i = 0; i < names.length; i++) {
     const x = (SPACE_X + BAR_WIDTH) * i;
