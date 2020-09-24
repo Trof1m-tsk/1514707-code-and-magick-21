@@ -62,9 +62,9 @@ window.renderStatistics = function (ctx, names, times) {
 
   times.forEach(
       function (playerTime, i) {
-      const x = (SPACE_X + BAR_WIDTH) * i;
-      const barHeight = playerTime * BAR_MAX_HEIGHT / getMaxResult(times);
-      renderPlayerStat(ctx, x, barHeight, names[i], times[i]);
+        const x = (SPACE_X + BAR_WIDTH) * i;
+        const barHeight = playerTime * BAR_MAX_HEIGHT / getMaxResult(times);
+        renderPlayerStat(ctx, x, barHeight, names[i], times[i]);
       }
   );
 };
