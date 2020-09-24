@@ -60,12 +60,11 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText(`Ура вы победили`, CLOUD_X + HEADING_GAP, CLOUD_Y + LINE_HEIGHT);
   ctx.fillText(`Список результатов:`, CLOUD_X + HEADING_GAP, CLOUD_Y + LINE_HEIGHT * 2);
 
-  times.
-    forEach(
+  times.forEach(
       function (playerTime, i) {
-        const x = (SPACE_X + BAR_WIDTH) * i;
-        const barHeight = playerTime * BAR_MAX_HEIGHT / getMaxResult(times);
-        renderPlayerStat(ctx, x, barHeight, names[i], times[i]);
+      const x = (SPACE_X + BAR_WIDTH) * i;
+      const barHeight = playerTime * BAR_MAX_HEIGHT / getMaxResult(times);
+      renderPlayerStat(ctx, x, barHeight, names[i], times[i]);
       }
-    );
+  );
 };
