@@ -36,7 +36,6 @@ const similarElementsList = document.querySelector(`.setup-similar-list`);
 const similarWizardTemplate = document.querySelector(`#similar-wizard-template`)
     .content
     .querySelector(`.setup-similar-item`);
-const fragment = document.createDocumentFragment();
 const wizards = [];
 
 userDialog.classList.remove(`hidden`);
@@ -46,7 +45,7 @@ const randomArrayItem = function (array) {
   return array[randomIndex];
 };
 
-const randomWizards = function (name, surname, coat, eyes) {
+const  createRandomWizards = function (name, surname, coat, eyes) {
   const randomWizard = {
     name: randomArrayItem(name) + ` ` + randomArrayItem(surname),
     coatColor: randomArrayItem(coat),
@@ -57,7 +56,7 @@ const randomWizards = function (name, surname, coat, eyes) {
 };
 
 for (let i = 0; i < OTHER_WIZARDS_NUMBER; i++) {
-  const wizard = randomWizards(FIRST_NAMES, SECOND_NAMES, COAT_COLORS, EYES_COLORS);
+  const wizard = createRandomWizards(FIRST_NAMES, SECOND_NAMES, COAT_COLORS, EYES_COLORS);
   wizards.push(wizard);
 }
 
@@ -67,9 +66,18 @@ const createElement = function (wizard) {
   wizardElement.querySelector(`.wizard-coat`).style.fill = wizard.coatColor;
   wizardElement.querySelector(`.wizard-eyes`).style.fill = wizard.eyesColor;
 
-  fragment.appendChild(wizardElement);
+  return wizardElement;
 };
 
-wizards.forEach(createElement);
-similarElementsList.appendChild(fragment);
-document.querySelector(`.setup-similar`).classList.remove(`hidden`);
+
+const renderFragment = function (wizards) {
+  const fragment = document.createDocumentFragment();
+
+  for (let i = 0; i < wizards.length; i++) {
+    fragment.appendChild(createElement(wizards[i]));
+  }
+  similarElementsList.appendChild(fragment);
+  document.querySelector(`.setup-similar`).classList.remove(`hidden`);
+};
+
+renderFragment(wizards);
