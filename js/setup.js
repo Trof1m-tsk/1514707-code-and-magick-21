@@ -45,7 +45,7 @@ const randomArrayItem = function (array) {
   return array[randomIndex];
 };
 
-const  createRandomWizards = function (name, surname, coat, eyes) {
+const createRandomWizards = function (name, surname, coat, eyes) {
   const randomWizard = {
     name: randomArrayItem(name) + ` ` + randomArrayItem(surname),
     coatColor: randomArrayItem(coat),
@@ -70,11 +70,11 @@ const createElement = function (wizard) {
 };
 
 
-const renderFragment = function (wizards) {
+const renderFragment = function (data) {
   const fragment = document.createDocumentFragment();
 
-  for (let i = 0; i < wizards.length; i++) {
-    fragment.appendChild(createElement(wizards[i]));
+  for (let i = 0; i < data.length; i++) {
+    fragment.appendChild(createElement(data[i]));
   }
   similarElementsList.appendChild(fragment);
   document.querySelector(`.setup-similar`).classList.remove(`hidden`);
