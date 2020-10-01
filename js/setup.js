@@ -41,8 +41,7 @@ const wizards = [];
 userDialog.classList.remove(`hidden`);
 
 const randomArrayItem = function (array) {
-  const randomIndex = Math.floor(Math.random() * array.length);
-  return array[randomIndex];
+  return array[Math.floor(Math.random() * array.length)];
 };
 
 const createRandomWizards = function (name, surname, coat, eyes) {
