@@ -12,7 +12,8 @@ const FIRST_NAMES = [
 const SECOND_NAMES = [
   `да Марья`,
   `Верон`,
-  `Мирабелла`, `Вальц`,
+  `Мирабелла`,
+  `Вальц`,
   `Онопко`,
   `Топольницкая`,
   `Нионго`,
@@ -30,7 +31,7 @@ const EYES_COLORS = [
   `blue`,
   `yellow`,
   `green`];
-const OTHER_WIZARDS_NUMBER = 4;
+const SIMILAR_WIZARDS_NUMBER = 4;
 const userDialog = document.querySelector(`.setup`);
 const similarElementsList = document.querySelector(`.setup-similar-list`);
 const similarWizardTemplate = document.querySelector(`#similar-wizard-template`)
@@ -44,22 +45,19 @@ const randomArrayItem = function (array) {
   return array[Math.floor(Math.random() * array.length)];
 };
 
-const createRandomWizards = function (name, surname, coat, eyes) {
-  const randomWizard = {
+const createSimilarWizard = function (name, surname, coat, eyes) {
+  return {
     name: randomArrayItem(name) + ` ` + randomArrayItem(surname),
     coatColor: randomArrayItem(coat),
     eyesColor: randomArrayItem(eyes)
   };
-
-  return randomWizard;
 };
 
-for (let i = 0; i < OTHER_WIZARDS_NUMBER; i++) {
-  const wizard = createRandomWizards(FIRST_NAMES, SECOND_NAMES, COAT_COLORS, EYES_COLORS);
-  wizards.push(wizard);
+for (let i = 0; i < SIMILAR_WIZARDS_NUMBER; i++) {
+  wizards.push(createSimilarWizard(FIRST_NAMES, SECOND_NAMES, COAT_COLORS, EYES_COLORS));
 }
 
-const createElement = function (wizard) {
+const createWizardElement = function (wizard) {
   const wizardElement = similarWizardTemplate.cloneNode(true);
   wizardElement.querySelector(`.setup-similar-label`).textContent = wizard.name;
   wizardElement.querySelector(`.wizard-coat`).style.fill = wizard.coatColor;
@@ -68,15 +66,14 @@ const createElement = function (wizard) {
   return wizardElement;
 };
 
-
-const renderFragment = function (data) {
+const renderWizardsFragment = function (similarWizards) {
   const fragment = document.createDocumentFragment();
 
-  for (let i = 0; i < data.length; i++) {
-    fragment.appendChild(createElement(data[i]));
-  }
+  similarWizards.forEach((item) => {
+    fragment.appendChild(createWizardElement(item));
+  });
   similarElementsList.appendChild(fragment);
   document.querySelector(`.setup-similar`).classList.remove(`hidden`);
 };
 
-renderFragment(wizards);
+renderWizardsFragment(wizards);
