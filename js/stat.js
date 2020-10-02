@@ -8,6 +8,8 @@ const GAP = 10;
 const SPACE_X = 50;
 const BAR_WIDTH = 40;
 const BAR_MAX_HEIGHT = 150;
+const TEXT_COLOR = `#000`;
+const TEXT_FONT = `16px PT Mono`;
 const TEXT_HEIGHT = 16;
 const LINE_HEIGHT = TEXT_HEIGHT + GAP;
 const HEADING_GAP = 100;
@@ -21,18 +23,18 @@ const renderCloud = function (ctx, x, y, color) {
 };
 
 const getMaxResult = function (times) {
-  return times.reduce(function (a, b) {
-    return Math.max(a, b);
+  return times.reduce(function (maxTime, time) {
+    return Math.max(maxTime, time);
   }
   );
 };
 
-const getOtherColor = function () {
+const getRandomColor = function () {
   return `hsl(240, ` + (Math.random(0) * 100) + `% , 50%)`;
 };
 
 const renderPlayerStat = function (ctx, x, height, name, time) {
-  ctx.fillStyle = (name === `Вы`) ? YOUR_STAT_COLOR : getOtherColor();
+  ctx.fillStyle = (name === `Вы`) ? YOUR_STAT_COLOR : getRandomColor();
   ctx.fillText(
       Math.round(time),
       FIRST_BAR_X + x,
@@ -55,8 +57,8 @@ window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, `rgba(0, 0, 0, 0.7)`);
   renderCloud(ctx, CLOUD_X, CLOUD_Y, `#ffffff`);
 
-  ctx.fillStyle = `#000`;
-  ctx.font = `16px PT Mono`;
+  ctx.fillStyle = TEXT_COLOR;
+  ctx.font = TEXT_FONT;
   ctx.fillText(`Ура вы победили`, CLOUD_X + HEADING_GAP, CLOUD_Y + LINE_HEIGHT);
   ctx.fillText(`Список результатов:`, CLOUD_X + HEADING_GAP, CLOUD_Y + LINE_HEIGHT * 2);
 
