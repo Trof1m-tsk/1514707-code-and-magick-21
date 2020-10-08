@@ -38,8 +38,6 @@ const FIREBALL_COLORS = [
   `#e848d5`,
   `#e6e848`];
 const SIMILAR_WIZARDS_NUMBER = 4;
-const MAX_NAME_LENGTH = 25;
-const MIN_NAME_LENGTH = 2;
 const setupWindow = document.querySelector(`.setup`);
 const similarElementsList = document.querySelector(`.setup-similar-list`);
 const similarWizardTemplate = document.querySelector(`#similar-wizard-template`)
@@ -48,7 +46,6 @@ const similarWizardTemplate = document.querySelector(`#similar-wizard-template`)
 const wizards = [];
 const setupWindowOpen = document.querySelector(`.setup-open`);
 const setupWindowClose = document.querySelector(`.setup-close`);
-const setupWindowIcon = document.querySelector(`.setup-open-icon`);
 const setupUserName = document.querySelector(`.setup-user-name`);
 const setupWizardCoat = document.querySelector(`.setup-wizard`).querySelector(`.wizard-coat`);
 const setupWizardEyes = document.querySelector(`.setup-wizard`).querySelector(`.wizard-eyes`);
@@ -92,10 +89,10 @@ renderWizardsFragment(wizards);
 
 const onEscCloseSetup = function (evt) {
   if (evt.key === `Escape`) {
-    evt.preventDefault;
+    evt.preventDefault();
     setupWindow.classList.add(`hidden`);
     closeSetupWindow();
-  };
+  }
 };
 
 const openSetupWindow = function () {
