@@ -50,7 +50,6 @@ const setupUserName = document.querySelector(`.setup-user-name`);
 const setupWizardCoat = document.querySelector(`.setup-wizard`).querySelector(`.wizard-coat`);
 const setupWizardEyes = document.querySelector(`.setup-wizard`).querySelector(`.wizard-eyes`);
 const setupWizardFireball = document.querySelector(`.setup-fireball`);
-const saveButton = document.querySelector(`.setup-submit`);
 const randomArrayItem = function (array) {
   return array[Math.floor(Math.random() * array.length)];
 };
