@@ -49,7 +49,8 @@ const setupWindowClose = document.querySelector(`.setup-close`);
 const setupUserName = document.querySelector(`.setup-user-name`);
 const setupWizardCoat = document.querySelector(`.setup-wizard`).querySelector(`.wizard-coat`);
 const setupWizardEyes = document.querySelector(`.setup-wizard`).querySelector(`.wizard-eyes`);
-const setupWizardFireball = document.querySelector(`.setup-fireball-wrap`);
+const setupWizardFireball = document.querySelector(`.setup-fireball`);
+const saveButton = document.querySelector(`.setup-submit`);
 const randomArrayItem = function (array) {
   return array[Math.floor(Math.random() * array.length)];
 };
@@ -88,7 +89,7 @@ const renderWizardsFragment = function (similarWizards) {
 renderWizardsFragment(wizards);
 
 const onEscCloseSetup = function (evt) {
-  if (evt.key === `Escape`) {
+  if (evt.key === `Escape` && setupUserName !== document.activeElement) {
     evt.preventDefault();
     setupWindow.classList.add(`hidden`);
     closeSetupWindow();
@@ -97,22 +98,22 @@ const onEscCloseSetup = function (evt) {
 
 const openSetupWindow = function () {
   setupWindow.classList.remove(`hidden`);
-
   document.addEventListener(`keydown`, onEscCloseSetup);
-  setupWizardCoat.addEventListener(`click`, function () {
-    const randomCoatColor = randomArrayItem(COAT_COLORS);
-    setupWizardCoat.style.fill = randomCoatColor;
-    document.querySelector(`.coat-color-input`).value = randomCoatColor;
-  });
-  setupWizardEyes.addEventListener(`click`, function () {
-    const randomEyesColor = randomArrayItem(EYES_COLORS);
-    setupWizardEyes.style.fill = randomEyesColor;
-    document.querySelector(`.eyes-color-input`).value = randomEyesColor;
-  });
-  setupWizardFireball.addEventListener(`click`, function () {
-    const randomFireballColor = randomArrayItem(FIREBALL_COLORS);
-    setupWizardFireball.style.backgroundColor = randomFireballColor;
-    document.querySelector(`.fireball-color-input`).value = randomFireballColor;
+
+  setupWindow.addEventListener(`click`, function (evt) {
+    if (evt.target.matches(`.wizard-coat`)) {
+      const randomCoatColor = randomArrayItem(COAT_COLORS);
+      setupWizardCoat.style.fill = randomCoatColor;
+      document.querySelector(`.coat-color-input`).value = randomCoatColor;
+    } else if (evt.target.matches(`.wizard-eyes`)) {
+      const randomEyesColor = randomArrayItem(EYES_COLORS);
+      setupWizardEyes.style.fill = randomEyesColor;
+      document.querySelector(`.eyes-color-input`).value = randomEyesColor;
+    } else if (evt.target.matches(`.setup-fireball`)) {
+      const randomFireballColor = randomArrayItem(FIREBALL_COLORS);
+      setupWizardFireball.style.backgroundColor = randomFireballColor;
+      document.querySelector(`.fireball-color-input`).value = randomFireballColor;
+    }
   });
 };
 
@@ -143,7 +144,6 @@ setupWindowClose.addEventListener(`keydown`, function (evt) {
 });
 
 setupUserName.addEventListener(`invalid`, function () {
-
   if (setupUserName.validity.tooShort) {
     setupUserName.setCustomValidity(`Имя должно состоять минимум из 2-х символов`);
   } else if (setupUserName.validity.tooLong) {
