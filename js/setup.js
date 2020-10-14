@@ -95,7 +95,7 @@ const onEscCloseSetup = function (evt) {
   }
 };
 
-const changeWizardColors = function (evt) {
+const onWizardChangeColors = function (evt) {
   const coatColorInput = document.querySelector(`.coat-color-input`);
   const eyesColorInput = document.querySelector(`.eyes-color-input`);
   const fireballColorInput = document.querySelector(`.fireball-color-input`);
@@ -118,13 +118,11 @@ const changeWizardColors = function (evt) {
 const openSetupWindow = function () {
   setupWindow.classList.remove(`hidden`);
   document.addEventListener(`keydown`, onEscCloseSetup);
-
-  setupWindow.addEventListener(`click`, changeWizardColors);
+  setupWindow.addEventListener(`click`, onWizardChangeColors);
 };
 
 const closeSetupWindow = function () {
   setupWindow.classList.add(`hidden`);
-
   document.removeEventListener(`keydown`, onEscCloseSetup);
 };
 
