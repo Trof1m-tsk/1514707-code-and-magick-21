@@ -96,6 +96,10 @@ const onEscCloseSetup = function (evt) {
 };
 
 const changeWizardColors = function (evt) {
+  const coatColorInput = document.querySelector(`.coat-color-input`);
+  const eyesColorInput = document.querySelector(`.eyes-color-input`);
+  const fireballColorInput = document.querySelector(`.fireball-color-input`);
+
   if (evt.target.matches(`.wizard-coat`)) {
     const randomCoatColor = randomArrayItem(COAT_COLORS);
     setupWizardCoat.style.fill = randomCoatColor;
@@ -114,9 +118,6 @@ const changeWizardColors = function (evt) {
 const openSetupWindow = function () {
   setupWindow.classList.remove(`hidden`);
   document.addEventListener(`keydown`, onEscCloseSetup);
-  const coatColorInput = document.querySelector(`.coat-color-input`);
-  const eyesColorInput = document.querySelector(`.eyes-color-input`);
-  const fireballColorInput = document.querySelector(`.fireball-color-input`);
 
   setupWindow.addEventListener(`click`, changeWizardColors);
 };
