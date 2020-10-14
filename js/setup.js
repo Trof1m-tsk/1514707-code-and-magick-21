@@ -95,25 +95,30 @@ const onEscCloseSetup = function (evt) {
   }
 };
 
+const changeWizardColors = function (evt) {
+  if (evt.target.matches(`.wizard-coat`)) {
+    const randomCoatColor = randomArrayItem(COAT_COLORS);
+    setupWizardCoat.style.fill = randomCoatColor;
+    coatColorInput.value = randomCoatColor;
+  } else if (evt.target.matches(`.wizard-eyes`)) {
+    const randomEyesColor = randomArrayItem(EYES_COLORS);
+    setupWizardEyes.style.fill = randomEyesColor;
+    eyesColorInput.value = randomEyesColor;
+  } else if (evt.target.matches(`.setup-fireball`)) {
+    const randomFireballColor = randomArrayItem(FIREBALL_COLORS);
+    setupWizardFireball.style.backgroundColor = randomFireballColor;
+    fireballColorInput.value = randomFireballColor;
+  }
+};
+
 const openSetupWindow = function () {
   setupWindow.classList.remove(`hidden`);
   document.addEventListener(`keydown`, onEscCloseSetup);
+  const coatColorInput = document.querySelector(`.coat-color-input`);
+  const eyesColorInput = document.querySelector(`.eyes-color-input`);
+  const fireballColorInput = document.querySelector(`.fireball-color-input`);
 
-  setupWindow.addEventListener(`click`, function (evt) {
-    if (evt.target.matches(`.wizard-coat`)) {
-      const randomCoatColor = randomArrayItem(COAT_COLORS);
-      setupWizardCoat.style.fill = randomCoatColor;
-      document.querySelector(`.coat-color-input`).value = randomCoatColor;
-    } else if (evt.target.matches(`.wizard-eyes`)) {
-      const randomEyesColor = randomArrayItem(EYES_COLORS);
-      setupWizardEyes.style.fill = randomEyesColor;
-      document.querySelector(`.eyes-color-input`).value = randomEyesColor;
-    } else if (evt.target.matches(`.setup-fireball`)) {
-      const randomFireballColor = randomArrayItem(FIREBALL_COLORS);
-      setupWizardFireball.style.backgroundColor = randomFireballColor;
-      document.querySelector(`.fireball-color-input`).value = randomFireballColor;
-    }
-  });
+  setupWindow.addEventListener(`click`, changeWizardColors);
 };
 
 const closeSetupWindow = function () {
@@ -142,7 +147,7 @@ setupWindowClose.addEventListener(`keydown`, function (evt) {
   }
 });
 
-setupUserName.addEventListener(`invalid`, function () {
+const onUserInputValidity = function () {
   if (setupUserName.validity.tooShort) {
     setupUserName.setCustomValidity(`Имя должно состоять минимум из 2-х символов`);
   } else if (setupUserName.validity.tooLong) {
@@ -154,4 +159,6 @@ setupUserName.addEventListener(`invalid`, function () {
   }
 
   setupUserName.reportValidity();
-});
+};
+
+setupUserName.addEventListener(`invalid`, onUserInputValidity);
