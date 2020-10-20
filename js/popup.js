@@ -38,7 +38,7 @@
     document.addEventListener(`keydown`, onEscCloseSetup);
     setupWindow.addEventListener(`click`, onWizardChangeColors);
     setupHandle.addEventListener(`mousedown`,
-      window.dragElement.drag(setupHandle, setupWindow));
+        window.dragElement.drag(setupHandle, setupWindow));
 
   };
 
@@ -46,7 +46,7 @@
     setupWindow.classList.add(`hidden`);
     document.removeEventListener(`keydown`, onEscCloseSetup);
     setupHandle.removeEventListener(`mousedown`,
-      window.dragElement.drag(setupHandle, setupWindow));
+        window.dragElement.drag(setupHandle, setupWindow));
   };
 
   setupWindowOpen.addEventListener(`click`, function () {

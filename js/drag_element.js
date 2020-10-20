@@ -11,10 +11,6 @@
         y: evt.clientY
       };
 
-      const onHandleClick = function(evtClick) {
-        evtClick.preventDefault();
-      };
-
       const onMouseMove = function (moveEvt) {
         moveEvt.preventDefault();
 
@@ -41,7 +37,7 @@
 
       document.addEventListener(`mousemove`, onMouseMove);
       document.addEventListener(`mouseup`, onMouseUp);
-    })
+    });
   };
 
   window.dragElement = {
