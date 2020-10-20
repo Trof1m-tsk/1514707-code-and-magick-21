@@ -11,8 +11,12 @@
         y: evt.clientY
       };
 
+      let dragged = false;
+
       const onMouseMove = function (moveEvt) {
         moveEvt.preventDefault();
+
+        dragged = true;
 
         let shift = {
           x: initialCoords.x - moveEvt.clientX,
@@ -26,6 +30,14 @@
 
         element.style.top = (element.offsetTop - shift.y) + `px`;
         element.style.left = (element.offsetLeft - shift.x) + `px`;
+
+        if (dragged) {
+          const onClickPreventDefault = function (clickEvt) {
+            clickEvt.preventDefault();
+            handle.removeEventListener(`click`, onClickPreventDefault);
+          };
+          handle.addEventListener(`click`, onClickPreventDefault);
+        }
       };
 
       const onMouseUp = function (upEvt) {
