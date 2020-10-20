@@ -40,4 +40,4 @@
     document.addEventListener(`mouseup`, onMouseUp);
   });
 
-}) ();
+})();
