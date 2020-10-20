@@ -2,42 +2,50 @@
 
 (function () {
 
-  const setupHandle = window.setupWindow.querySelector(`.upload`);
+  const drag = function (handle, element) {
+    handle.addEventListener(`mousedown`, function (evt) {
+      evt.preventDefault();
 
-  setupHandle.addEventListener(`mousedown`, function (evt) {
-    evt.preventDefault();
-
-    let initialCoords = {
-      x: evt.clientX,
-      y: evt.clientY
-    };
-
-    const onMouseMove = function (moveEvt) {
-      moveEvt.preventDefault();
-
-      let shift = {
-        x: initialCoords.x - moveEvt.clientX,
-        y: initialCoords.y - moveEvt.clientY
+      let initialCoords = {
+        x: evt.clientX,
+        y: evt.clientY
       };
 
-      initialCoords = {
-        x: moveEvt.clientX,
-        y: moveEvt.clientY
+      const onHandleClick = function(evtClick) {
+        evtClick.preventDefault();
       };
 
-      window.setupWindow.style.top = (window.setupWindow.offsetTop - shift.y) + `px`;
-      window.setupWindow.style.left = (window.setupWindow.offsetLeft - shift.x) + `px`;
-    };
+      const onMouseMove = function (moveEvt) {
+        moveEvt.preventDefault();
 
-    const onMouseUp = function (upEvt) {
-      upEvt.preventDefault();
+        let shift = {
+          x: initialCoords.x - moveEvt.clientX,
+          y: initialCoords.y - moveEvt.clientY
+        };
 
-      document.removeEventListener(`mousemove`, onMouseMove);
-      document.removeEventListener(`mouseup`, onMouseUp);
-    };
+        initialCoords = {
+          x: moveEvt.clientX,
+          y: moveEvt.clientY
+        };
 
-    document.addEventListener(`mousemove`, onMouseMove);
-    document.addEventListener(`mouseup`, onMouseUp);
-  });
+        element.style.top = (element.offsetTop - shift.y) + `px`;
+        element.style.left = (element.offsetLeft - shift.x) + `px`;
+      };
+
+      const onMouseUp = function (upEvt) {
+        upEvt.preventDefault();
+
+        document.removeEventListener(`mousemove`, onMouseMove);
+        document.removeEventListener(`mouseup`, onMouseUp);
+      };
+
+      document.addEventListener(`mousemove`, onMouseMove);
+      document.addEventListener(`mouseup`, onMouseUp);
+    })
+  };
+
+  window.dragElement = {
+    drag: drag
+  };
 
 })();

@@ -47,12 +47,12 @@
   const wizards = [];
 
   window.setup = {
-    first_names: FIRST_NAMES,
-    second_names: SECOND_NAMES,
-    coat_colors: COAT_COLORS,
-    eyes_colors: EYES_COLORS,
-    fireball_colors: FIREBALL_COLORS,
-    similars_number: SIMILARS_NUMBER
+    firstNames: FIRST_NAMES,
+    secondNames: SECOND_NAMES,
+    coatColors: COAT_COLORS,
+    eyesColors: EYES_COLORS,
+    fireballColors: FIREBALL_COLORS,
+    similarsNumber: SIMILARS_NUMBER
   };
 
   const createSimilarWizard = function (name, surname, coat, eyes) {

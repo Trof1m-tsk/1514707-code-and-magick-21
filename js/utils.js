@@ -8,7 +8,8 @@
 
   const applyRandomColor = function (element, colors, colorInput) {
     const color = randomArrayItem(colors);
-    if (element.tagName.toLowerCase() === 'div') {
+
+    if (element.tagName.toLowerCase() === `div`) {
       element.style.backgroundColor = color;
     } else {
       element.style.fill = color;
