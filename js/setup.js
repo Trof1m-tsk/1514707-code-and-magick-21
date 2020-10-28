@@ -39,11 +39,7 @@
     `#5ce6c0`,
     `#e848d5`,
     `#e6e848`];
-  const SIMILARS_NUMBER = 4;
-  const similarElementsList = document.querySelector(`.setup-similar-list`);
-  const similarWizardTemplate = document.querySelector(`#similar-wizard-template`)
-      .content
-      .querySelector(`.setup-similar-item`);
+
   const wizards = [];
 
   window.setup = {
@@ -52,7 +48,6 @@
     coatColors: COAT_COLORS,
     eyesColors: EYES_COLORS,
     fireballColors: FIREBALL_COLORS,
-    similarsNumber: SIMILARS_NUMBER
   };
 
   const createSimilarWizard = function (name, surname, coat, eyes) {
@@ -62,30 +57,5 @@
       eyesColor: window.utils.randomArrayItem(eyes)
     };
   };
-
-  for (let i = 0; i < SIMILARS_NUMBER; i++) {
-    wizards.push(createSimilarWizard(FIRST_NAMES, SECOND_NAMES, COAT_COLORS, EYES_COLORS));
-  }
-
-  const createWizardElement = function (wizard) {
-    const wizardElement = similarWizardTemplate.cloneNode(true);
-    wizardElement.querySelector(`.setup-similar-label`).textContent = wizard.name;
-    wizardElement.querySelector(`.wizard-coat`).style.fill = wizard.coatColor;
-    wizardElement.querySelector(`.wizard-eyes`).style.fill = wizard.eyesColor;
-
-    return wizardElement;
-  };
-
-  const renderWizardsFragment = function (similarWizards) {
-    const fragment = document.createDocumentFragment();
-
-    similarWizards.forEach((item) => {
-      fragment.appendChild(createWizardElement(item));
-    });
-    similarElementsList.appendChild(fragment);
-    document.querySelector(`.setup-similar`).classList.remove(`hidden`);
-  };
-
-  renderWizardsFragment(wizards);
 
 })();
