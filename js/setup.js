@@ -40,22 +40,12 @@
     `#e848d5`,
     `#e6e848`];
 
-  const wizards = [];
-
   window.setup = {
     firstNames: FIRST_NAMES,
     secondNames: SECOND_NAMES,
     coatColors: COAT_COLORS,
     eyesColors: EYES_COLORS,
     fireballColors: FIREBALL_COLORS,
-  };
-
-  const createSimilarWizard = function (name, surname, coat, eyes) {
-    return {
-      name: `${window.utils.randomArrayItem(name)} ${window.utils.randomArrayItem(surname)}`,
-      coatColor: window.utils.randomArrayItem(coat),
-      eyesColor: window.utils.randomArrayItem(eyes)
-    };
   };
 
 })();

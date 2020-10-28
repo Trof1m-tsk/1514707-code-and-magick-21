@@ -12,8 +12,8 @@
       onLoad(req.response);
     });
 
-    req.addEventListener(`error`, function() {
-      onError(`Статус ответа: ${xhr.status} ${xhr.statusText}`);
+    req.addEventListener(`error`, function () {
+      onError(`Статус ответа: ${req.status} ${req.statusText}`);
     });
 
     req.open(`POST`, URL);
@@ -32,8 +32,8 @@
       onLoad(req.response);
     });
 
-    req.addEventListener(`error`, function() {
-      onError(`Статус ответа: ${xhr.status} ${xhr.statusText}`);
+    req.addEventListener(`error`, function () {
+      onError(`Произошла ошибка`);
     });
 
     req.send();

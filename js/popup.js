@@ -106,17 +106,18 @@
 
     for (let i = 0; i < WIZARDS_NUMBER; i++) {
       fragment.appendChild(createWizardElement(wizards[i]));
-    };
+    }
+
     similarElementsList.appendChild(fragment);
     document.querySelector(`.setup-similar`).classList.remove(`hidden`);
   };
 
   const errorHandler = function (errorMessage) {
     const errPopup = document.createElement(`div`);
-    errPopup.style =  `z-index: 100; margin: 0 auto; text-align: center; background-color: white; border: 3px solid red`;
+    errPopup.style = `width: 350px; height: auto; z-index: 100; margin: 0 auto; text-align: center; color: red; background-color: white; border: 3px solid red`;
     errPopup.style.position = `absolute`;
-    errPopup.style.left = 0;
-    errPopup.style.top = 0;
+    errPopup.style.left = `50%`;
+    errPopup.style.top = `50%`;
     errPopup.style.fontSize = `30px`;
 
     errPopup.textContent = errorMessage;
