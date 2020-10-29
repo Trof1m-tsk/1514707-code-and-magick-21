@@ -2,6 +2,8 @@
 
 (function () {
 
+  const WIZARDS_NUMBER = 4;
+
   const setupWindow = document.querySelector(`.setup`);
   const setupWindowOpen = document.querySelector(`.setup-open`);
   const setupWindowClose = document.querySelector(`.setup-close`);
@@ -10,6 +12,11 @@
   const setupWizardEyes = document.querySelector(`.setup-wizard`).querySelector(`.wizard-eyes`);
   const setupWizardFireball = document.querySelector(`.setup-fireball`);
   const setupHandle = setupWindow.querySelector(`.upload`);
+  const form = setupWindow.querySelector(`.setup-wizard-form`);
+  const similarElementsList = document.querySelector(`.setup-similar-list`);
+  const similarWizardTemplate = document.querySelector(`#similar-wizard-template`)
+      .content
+      .querySelector(`.setup-similar-item`);
 
   const onEscCloseSetup = function (evt) {
     if (evt.key === `Escape` && setupUserName !== document.activeElement) {
@@ -84,5 +91,46 @@
   };
 
   setupUserName.addEventListener(`invalid`, onUserInputValidity);
+
+  const createWizardElement = function (wizard) {
+    const wizardElement = similarWizardTemplate.cloneNode(true);
+    wizardElement.querySelector(`.setup-similar-label`).textContent = wizard.name;
+    wizardElement.querySelector(`.wizard-coat`).style.fill = wizard.coatColor;
+    wizardElement.querySelector(`.wizard-eyes`).style.fill = wizard.eyesColor;
+
+    return wizardElement;
+  };
+
+  const loadHandler = function (wizards) {
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 0; i < WIZARDS_NUMBER; i++) {
+      fragment.appendChild(createWizardElement(wizards[i]));
+    }
+
+    similarElementsList.appendChild(fragment);
+    document.querySelector(`.setup-similar`).classList.remove(`hidden`);
+  };
+
+  const errorHandler = function (errorMessage) {
+    const errPopup = document.createElement(`div`);
+    errPopup.style = `width: 350px; height: auto; z-index: 100; margin: 0 auto; text-align: center; color: red; background-color: white; border: 3px solid red`;
+    errPopup.style.position = `absolute`;
+    errPopup.style.left = `50%`;
+    errPopup.style.top = `50%`;
+    errPopup.style.fontSize = `30px`;
+
+    errPopup.textContent = errorMessage;
+    document.body.insertAdjacentElement(`afterbegin`, errPopup);
+  };
+
+  window.backend.load(loadHandler, errorHandler);
+
+  form.addEventListener(`submit`, function (evt) {
+    window.backend.save(new FormData(form), function () {
+      setupWindow.classList.add(`hidden`);
+    }, errorHandler);
+    evt.preventDefault();
+  });
 
 })();
