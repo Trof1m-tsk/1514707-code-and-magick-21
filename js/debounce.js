@@ -1,6 +1,7 @@
 "use strict";
 
 (function () {
+
   const DEBOUNCE_TIME = 500;
   let lastTimeout;
 

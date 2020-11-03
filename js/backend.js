@@ -1,7 +1,6 @@
 "use strict";
 
 (function () {
-
   const save = function (data, onLoad, onError) {
     const URL = `https://21.javascript.pages.academy/code-and-magick`;
 
