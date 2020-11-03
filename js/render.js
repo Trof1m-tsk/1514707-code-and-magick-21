@@ -1,6 +1,7 @@
 "use strict";
 
 (function () {
+
   const COAT_COLORS = [
     `rgb(101, 137, 164)`,
     `rgb(241, 43, 107)`,

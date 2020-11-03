@@ -1,6 +1,7 @@
 "use strict";
 
 (function () {
+
   const setupWindow = document.querySelector(`.setup`);
   const setupWindowOpen = document.querySelector(`.setup-open`);
   const setupWindowClose = document.querySelector(`.setup-close`);
