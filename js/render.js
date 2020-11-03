@@ -31,11 +31,12 @@
   const similarWizardTemplate = document.querySelector(`#similar-wizard-template`)
     .content
     .querySelector(`.setup-similar-item`);
+  let coatColor = window.utils.randomArrayItem(COAT_COLORS);
+  let eyesColor = window.utils.randomArrayItem(EYES_COLORS);
+  let fireballColor = window.utils.randomArrayItem(FIREBALL_COLORS);
 
   const onWizardChangeColors = function (evt) {
-    let coatColor = ``;
-    let eyesColor = ``;
-    let fireballColor = ``;
+
     const coatColorInput = document.querySelector(`.coat-color-input`);
     const eyesColorInput = document.querySelector(`.eyes-color-input`);
     const fireballColorInput = document.querySelector(`.fireball-color-input`);
@@ -57,23 +58,22 @@
   const createWizardElement = function (wizard) {
     const wizardElement = similarWizardTemplate.cloneNode(true);
     wizardElement.querySelector(`.setup-similar-label`).textContent = wizard.name;
-    wizardElement.querySelector(`.wizard-coat`).style.fill = wizard.colorCoat
+    wizardElement.querySelector(`.wizard-coat`).style.fill = wizard.colorCoat;
     wizardElement.querySelector(`.wizard-eyes`).style.fill = wizard.colorEyes;
 
     return wizardElement;
   };
 
   const getSimilarWizards = function (coat, eyes) {
-    const  wizardsData = window.backend.data;
+    const wizardsData = window.backend.data;
     wizardsData.forEach(function (wizardData) {
       wizardData.score = 0;
       if (wizardData.colorCoat === coat && wizardData.colorEyes === eyes) {
-        wizardData.score = 100;
-        console.log(wizardData.name);
+        wizardData.score = 10;
       } else if (wizardData.colorCoat === coat && wizardData.colorEyes !== eyes) {
-        wizardData.score = 20;
+        wizardData.score = 7;
       } else if (wizardData.colorCoat !== coat && wizardData.colorEyes === eyes) {
-        wizardData.score = 1;
+        wizardData.score = 3;
       }
     });
 

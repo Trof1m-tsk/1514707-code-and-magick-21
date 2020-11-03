@@ -68,8 +68,7 @@
 
   setupUserName.addEventListener(`invalid`, onUserInputValidity);
 
-  const loadHandler = function (wizards) {
-    //window.render.renderSimilarWizards(wizards);
+  const loadHandler = function () {
     document.querySelector(`.setup-similar`).classList.remove(`hidden`);
   };
 
