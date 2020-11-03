@@ -6,8 +6,7 @@
     return array[Math.floor(Math.random() * array.length)];
   };
 
-  const applyRandomColor = function (element, colors, colorInput) {
-    const color = randomArrayItem(colors);
+  const applyRandomColor = function (element, color, colorInput) {
 
     if (element.tagName.toLowerCase() === `div`) {
       element.style.backgroundColor = color;

@@ -30,6 +30,7 @@
 
     req.addEventListener(`load`, function () {
       onLoad(req.response);
+      window.backend.data = req.response;
     });
 
     req.addEventListener(`error`, function () {
@@ -38,7 +39,6 @@
 
     req.send();
   };
-
 
   window.backend = {
     save: save,
