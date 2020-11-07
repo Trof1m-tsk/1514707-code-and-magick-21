@@ -1,7 +1,6 @@
 "use strict";
 
 (function () {
-
   const setupWindow = document.querySelector(`.setup`);
   const setupWindowOpen = document.querySelector(`.setup-open`);
   const setupWindowClose = document.querySelector(`.setup-close`);
@@ -20,7 +19,7 @@
   const openSetupWindow = function () {
     setupWindow.classList.remove(`hidden`);
     document.addEventListener(`keydown`, onEscCloseSetup);
-    setupWindow.addEventListener(`click`, window.render.onWizardChangeColors);
+    setupWindow.addEventListener(`click`, window.wizards.onWizardChangeColors);
     setupHandle.addEventListener(`mousedown`,
         window.dragElement.drag(setupHandle, setupWindow));
   };
@@ -74,12 +73,7 @@
 
   const errorHandler = function (errorMessage) {
     const errPopup = document.createElement(`div`);
-    errPopup.style = `width: 350px; height: auto; z-index: 100; margin: 0 auto; text-align: center; color: red; background-color: white; border: 3px solid red`;
-    errPopup.style.position = `absolute`;
-    errPopup.style.left = `50%`;
-    errPopup.style.top = `50%`;
-    errPopup.style.fontSize = `30px`;
-
+    errPopup.classList.add(`error-popup`);
     errPopup.textContent = errorMessage;
     document.body.insertAdjacentElement(`afterbegin`, errPopup);
   };

@@ -13,7 +13,7 @@
     });
 
     req.addEventListener(`error`, function () {
-      onError(`Статус ответа: ${req.status} ${req.statusText}`);
+      onError(`Произошла ошибка`);
     });
 
     req.open(`POST`, URL);
@@ -29,8 +29,7 @@
     req.open(`GET`, URL);
 
     req.addEventListener(`load`, function () {
-      onLoad(req.response);
-      window.backend.data = req.response;
+      onLoad(window.backend.data = req.response);
     });
 
     req.addEventListener(`error`, function () {

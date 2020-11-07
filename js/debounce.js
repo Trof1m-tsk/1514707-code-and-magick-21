@@ -1,7 +1,6 @@
 "use strict";
 
 (function () {
-
   const DEBOUNCE_TIME = 500;
   let lastTimeout;
 
@@ -12,5 +11,4 @@
 
     lastTimeout = window.setTimeout(callback, DEBOUNCE_TIME);
   };
-
 })();

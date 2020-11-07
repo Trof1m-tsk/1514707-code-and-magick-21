@@ -1041,3 +1041,19 @@ input[type=radio]:checked + .review-mark-label
 
     opacity: 0;
 }
+
+.error-popup
+{
+    width: 350px;
+    height: auto;
+    z-index: 100;
+    margin: 0 auto;
+    text-align: center;
+    color: red;
+    background-color: white;
+    border: 3px solid red;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 30px;
+}
